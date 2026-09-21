@@ -1,0 +1,73 @@
+{
+  "id": "ajiunotes-tech-console-v1",
+  "version": "0.1.0",
+  "status": "provisional",
+  "referenceIds": [
+    "benchmark:ai-creator-20",
+    "benchmark:zhuzige-tech-information-grammar"
+  ],
+  "tokens": {
+    "colors": {
+      "canvas": "#070A0F",
+      "panel": "rgba(13, 21, 31, 0.88)",
+      "textPrimary": "#F5F8FC",
+      "textSecondary": "#A9B7C6",
+      "statusCyan": "#38D9FF",
+      "statusBlue": "#4C7DFF",
+      "resultGold": "#E6B85C",
+      "riskRed": "#FF646A",
+      "border": "rgba(93, 210, 255, 0.36)"
+    },
+    "typography": {
+      "language": "zh-CN-first",
+      "headingWeight": 800,
+      "bodyWeight": 550,
+      "numberScale": 1.35,
+      "maxCaptionLines": 2
+    },
+    "geometry": {
+      "cornerRadius": 18,
+      "borderWidth": 1,
+      "safeLeft": 96,
+      "safeRight": 96,
+      "safeTop": 80,
+      "safeBottom": 140
+    },
+    "effects": {
+      "glowBlur": 20,
+      "glowOpacity": 0.28,
+      "panelShadow": "0 18px 54px rgba(0,0,0,0.38)",
+      "backdropBlur": 14
+    }
+  },
+  "motion": {
+    "allowedPresets": [
+      "tech-slide-right",
+      "tech-slide-up",
+      "tech-slide-scale",
+      "spring-scale-in",
+      "focus-expand",
+      "split-reveal",
+      "caption-fade",
+      "warning-pulse-in"
+    ],
+    "defaultEnterFrames": 9,
+    "defaultExitFrames": 6,
+    "reducedMotionFallback": "opacity-only"
+  },
+  "layoutRules": [
+    "one dominant visual subject per segment",
+    "keep face, mouth, hands, captions, and proof mutually readable",
+    "use a side card for judgments and a dominant proof frame for evidence",
+    "use Chinese first; keep English only for real tool names and code fields",
+    "use cyan-blue for status, gold for proven value, and restrained red for risk"
+  ],
+  "prohibitedImitation": [
+    "creator logo",
+    "creator font combination",
+    "creator column name",
+    "creator cover layout",
+    "creator signature gesture or slogan",
+    "complete creator visual identity"
+  ]
+}

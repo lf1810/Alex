@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "directory": "assets/ai-logo-sphere",
+  "recommendedSize": "SVG 24x24 viewBox",
+  "transparentBackgroundPreferred": true,
+  "logos": [
+    {"name": "DeepSeek", "file": "deepseek.svg"},
+    {"name": "Google", "file": "google.svg"},
+    {"name": "海螺 AI", "file": "hailuo.svg"},
+    {"name": "Higress", "file": "higress.svg"},
+    {"name": "即梦", "file": "jimeng.svg"},
+    {"name": "Jina", "file": "jina.svg"},
+    {"name": "Lambda", "file": "lambda.svg"},
+    {"name": "LlamaIndex", "file": "llamaindex.svg"},
+    {"name": "Luma", "file": "luma.svg"},
+    {"name": "Mistral", "file": "mistral.svg"},
+    {"name": "NotebookLM", "file": "notebooklm.svg"},
+    {"name": "Notion", "file": "notion.svg"},
+    {"name": "NPLCloud", "file": "nplcloud.svg"},
+    {"name": "Ollama", "file": "ollama.svg"},
+    {"name": "Perplexity", "file": "perplexity.svg"},
+    {"name": "Qwen", "file": "qwen.svg"}
+  ]
+}

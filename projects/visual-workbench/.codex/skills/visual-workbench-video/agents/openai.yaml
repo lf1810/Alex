@@ -1,0 +1,4 @@
+interface:
+  display_name: "可视化编导台视频流程"
+  short_description: "分析口播视频、生成初剪方案、确认后导入编导台并导出项目"
+  default_prompt: "使用 $visual-workbench-video 分析 input/videos 中的视频，先输出带时间戳的初剪方案并等待确认；确认后再写入编导台项目。"

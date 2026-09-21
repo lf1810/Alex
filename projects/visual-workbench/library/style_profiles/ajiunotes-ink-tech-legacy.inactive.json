@@ -1,0 +1,20 @@
+{
+  "id": "ajiunotes-ink-tech-legacy",
+  "version": "0.0.1",
+  "status": "inactive_not_deleted",
+  "referenceIds": ["legacy:remotion-demo"],
+  "tokens": {
+    "colors": {},
+    "typography": {},
+    "geometry": {},
+    "effects": {}
+  },
+  "motion": {
+    "allowedPresets": ["opacity-only"],
+    "defaultEnterFrames": 1,
+    "defaultExitFrames": 1,
+    "reducedMotionFallback": "opacity-only"
+  },
+  "layoutRules": ["historical profile only; do not select for new projects"],
+  "prohibitedImitation": ["do not activate without AjIU approval"]
+}

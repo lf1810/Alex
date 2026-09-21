@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual Workbench Rough Cut Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "status", "projectName", "segments"],
+  "properties": {
+    "schemaVersion": {"const": "visual-workbench-rough-cut/1"},
+    "status": {"enum": ["proposed", "confirmed"]},
+    "projectName": {"type": "string", "minLength": 1},
+    "projectId": {"type": "string"},
+    "fps": {"type": "integer", "minimum": 1, "maximum": 120},
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "sourceFile", "sourceStartSeconds", "sourceEndSeconds", "label", "reason"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "sourceFile": {"type": "string", "minLength": 1},
+          "sourceStartSeconds": {"type": "number", "minimum": 0},
+          "sourceEndSeconds": {"type": "number", "exclusiveMinimum": 0},
+          "label": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1},
+          "needsHumanReview": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}
