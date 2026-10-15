@@ -8,12 +8,17 @@ const environmentKey: Record<MediaTool, string> = {
   ffprobe: "VISUAL_WORKBENCH_FFPROBE",
 };
 
+// Windows executables carry an extension, so resolving the bare tool name never
+// matches `ffmpeg.exe` on disk. Keep the POSIX lookup untouched elsewhere.
+const executableNames = (tool: MediaTool): string[] =>
+  process.platform === "win32" ? [`${tool}.exe`, `${tool}.cmd`, `${tool}.bat`] : [tool];
+
 const executableCandidates = (tool: MediaTool): string[] => {
   const configured = process.env[environmentKey[tool]]?.trim();
   const fromPath = (process.env.PATH ?? "")
     .split(delimiter)
     .filter(Boolean)
-    .map((directory) => resolve(directory, tool));
+    .flatMap((directory) => executableNames(tool).map((name) => resolve(directory, name)));
   return [
     ...(configured ? [configured] : []),
     ...fromPath,

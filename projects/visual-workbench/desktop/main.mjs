@@ -1,5 +1,5 @@
 import {spawn} from "node:child_process";
-import {createWriteStream, existsSync} from "node:fs";
+import {createWriteStream, existsSync, readFileSync} from "node:fs";
 import {mkdir} from "node:fs/promises";
 import {delimiter, dirname, resolve} from "node:path";
 import {fileURLToPath} from "node:url";
@@ -13,7 +13,30 @@ const workspaceRoot = process.env.VISUAL_WORKBENCH_ROOT
   || (packagedRuntime ? packagedWorkbenchRoot : resolve(here, ".."));
 const appDistRoot = resolve(workspaceRoot, "app/dist");
 const serviceScript = resolve(workspaceRoot, "local-service/dist", packagedRuntime ? "server.bundle.cjs" : "server.js");
-const publicRoot = packagedRuntime ? resolve(app.getPath("userData"), "workspace", "public") : resolve(workspaceRoot, "public");
+// A packaged build can point its project data at an existing working copy, so the
+// browser mode, the desktop app and `pnpm render:project` all read the same
+// `public/projects` folder. Without `data-root.json` the packaged app keeps the
+// upstream behaviour and stores data under the per-user Electron data directory.
+const sharedData = (() => {
+  if (!packagedRuntime) return {};
+  try {
+    const file = resolve(packagedWorkbenchRoot, "data-root.json");
+    if (!existsSync(file)) return {};
+    const parsed = JSON.parse(readFileSync(file, "utf8"));
+    return {
+      publicRoot: typeof parsed.publicRoot === "string" ? resolve(parsed.publicRoot) : undefined,
+      workspaceRoot: typeof parsed.workspaceRoot === "string" ? resolve(parsed.workspaceRoot) : undefined,
+    };
+  } catch {
+    return {};
+  }
+})();
+const dataWorkspaceRoot = sharedData.workspaceRoot
+  ?? (packagedRuntime ? resolve(app.getPath("userData"), "workspace") : workspaceRoot);
+const publicRoot = process.env.VISUAL_WORKBENCH_PUBLIC_ROOT
+  ? resolve(process.env.VISUAL_WORKBENCH_PUBLIC_ROOT)
+  : sharedData.publicRoot
+    ?? (packagedRuntime ? resolve(app.getPath("userData"), "workspace", "public") : resolve(workspaceRoot, "public"));
 const desktopPath = [
   ...(process.env.PATH ?? "").split(delimiter).filter(Boolean),
   "/opt/homebrew/bin",
@@ -57,7 +80,7 @@ const startLocalService = async () => {
     env: {
       ...process.env,
       ELECTRON_RUN_AS_NODE: "1",
-      VISUAL_WORKBENCH_ROOT: workspaceRoot,
+      VISUAL_WORKBENCH_ROOT: dataWorkspaceRoot,
       VISUAL_WORKBENCH_PUBLIC_ROOT: publicRoot,
       VISUAL_WORKBENCH_PORT: "0",
       VISUAL_WORKBENCH_APP_DIST: appDistRoot,
@@ -109,7 +132,7 @@ const startLocalService = async () => {
 
 const createMainWindow = async (url) => {
   const window = new BrowserWindow({
-    title: "CodeX可视化编导台",
+    title: "影猫可视化编导台",
     width: 1680,
     height: 1050,
     minWidth: 1180,
@@ -141,9 +164,9 @@ const createMainWindow = async (url) => {
 };
 
 const installMenu = () => {
-  Menu.setApplicationMenu(Menu.buildFromTemplate([
+  const macTemplate = [
     {
-      label: "CodeX可视化编导台",
+      label: "影猫可视化编导台",
       submenu: [
         {role: "about", label: "关于编导台"},
         {type: "separator"},
@@ -174,7 +197,40 @@ const installMenu = () => {
         {role: "togglefullscreen", label: "进入/退出全屏"},
       ],
     },
-  ]));
+  ];
+  // Windows/Linux have no native menu bar roles such as `hide` or `zoom`;
+  // using the macOS template there produces dead entries.
+  const windowsTemplate = [
+    {
+      label: "编导台",
+      submenu: [
+        {role: "reload", label: "重新加载界面"},
+        {type: "separator"},
+        {role: "quit", label: "退出编导台"},
+      ],
+    },
+    {
+      label: "编辑",
+      submenu: [
+        {role: "undo", label: "撤销"},
+        {role: "redo", label: "重做"},
+        {type: "separator"},
+        {role: "cut", label: "剪切"},
+        {role: "copy", label: "复制"},
+        {role: "paste", label: "粘贴"},
+        {role: "selectAll", label: "全选"},
+      ],
+    },
+    {
+      label: "窗口",
+      submenu: [
+        {role: "minimize", label: "最小化"},
+        {role: "togglefullscreen", label: "进入/退出全屏"},
+        {role: "close", label: "关闭窗口"},
+      ],
+    },
+  ];
+  Menu.setApplicationMenu(Menu.buildFromTemplate(process.platform === "darwin" ? macTemplate : windowsTemplate));
 };
 
 const stopService = () => {

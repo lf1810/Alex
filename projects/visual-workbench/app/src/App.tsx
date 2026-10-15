@@ -139,11 +139,11 @@ const ProjectCenter = ({projects, health, loading, error, onOpen, onRefresh, onR
     <main className="project-center">
       <div className="ambient ambient-one"/><div className="ambient ambient-two"/>
       <header className="center-header">
-        <div className="brand"><div className="brand-mark">A9</div><div><strong>A9 可视化编导台</strong><span>REMOTION VISUAL WORKBENCH</span></div></div>
+        <div className="brand"><div className="brand-mark cn">影猫</div><div><strong>影猫可视化编导台</strong><span>REMOTION VISUAL WORKBENCH</span></div></div>
         <div className="system-pill"><span className={health?.status === "ok" ? "status-dot online" : "status-dot"}/>{health?.status === "ok" ? "本地引擎在线" : "正在连接引擎"}</div>
       </header>
       <section className="hero">
-        <div className="eyebrow"><SparkIcon/> 可以用 Codex 在编导台内增加动效</div>
+        <div className="eyebrow"><SparkIcon/> 可以用 Agent 在编导台内增加动效</div>
         <h1><span>从镜头节点</span><em>到剪辑动效</em><span>在一张工作台推进。</span></h1>
         <div className="hero-actions">
           <button className="primary-button" onClick={() => mediaInputRef.current?.click()} disabled={importing}><UploadIcon/>{importing ? "正在创建…" : "导入一段或多段视频新建项目"}</button>
@@ -851,7 +851,7 @@ const Workbench = ({bundle, onBack, onReload}: {bundle: ProjectBundle; onBack: (
   return (
     <main className="workbench-shell">
       <header className="workbench-header">
-        <div className="header-left"><button className="icon-button" onClick={() => {void editor.saveNow().then(onBack);}}><ArrowLeftIcon/></button><div className="brand compact"><div className="brand-mark">A9</div><div><strong>{editor.project.name}</strong><span>{editor.project.settings.width}×{editor.project.settings.height} · {editor.project.settings.fps} FPS</span></div></div></div>
+        <div className="header-left"><button className="icon-button" onClick={() => {void editor.saveNow().then(onBack);}}><ArrowLeftIcon/></button><div className="brand compact"><div className="brand-mark cn">影猫</div><div><strong>{editor.project.name}</strong><span>{editor.project.settings.width}×{editor.project.settings.height} · {editor.project.settings.fps} FPS</span></div></div></div>
         <div className="header-status"><span className="editable-badge"><SparkIcon/>本地可视化编辑</span><span className={`save-state ${editor.saveStatus}`} title={editor.saveError}>{saveLabel}</span><span>{ready}/{editor.project.assets.length} 素材就绪</span><span>{statusLabel(editor.project.status)}</span></div>
         <div className="header-actions"><button data-testid="undo" disabled={!editor.canUndo} onClick={editor.undo}>撤销</button><button data-testid="redo" disabled={!editor.canRedo} onClick={editor.redo}>重做</button><button data-testid="recovery" onClick={() => {void openRecovery();}}>恢复点</button><button data-testid="save" className="check-button" onClick={() => {void editor.saveNow();}}><CheckIcon/>保存</button></div>
       </header>

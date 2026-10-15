@@ -24,6 +24,7 @@
     "desktop:prepare": "pnpm --filter @ajiunotes/contracts build && pnpm --filter @ajiunotes/style-library build && pnpm --filter @ajiunotes/template-registry build && pnpm --filter @ajiunotes/editor-core build && pnpm --filter @ajiunotes/video-engine build && pnpm --filter @ajiunotes/local-service build && pnpm --filter @ajiunotes/workbench-app build:desktop",
     "desktop:dev": "pnpm desktop:prepare && pnpm --filter @ajiunotes/desktop start",
     "desktop:package": "pnpm desktop:prepare && pnpm --filter @ajiunotes/desktop package:mac",
+    "desktop:package:win": "pnpm desktop:prepare && pnpm --filter @ajiunotes/desktop package:win",
     "proxy:edit": "node scripts/build-edit-proxies.mjs",
     "media:inspect": "node .codex/skills/visual-workbench-video/scripts/inspect-media.mjs",
     "plan:apply": "node .codex/skills/visual-workbench-video/scripts/apply-rough-cut-plan.mjs",

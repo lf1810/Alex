@@ -19,3 +19,6 @@
 .project-rename-form button{height:32px;border:1px solid var(--line);border-radius:7px;background:rgba(7,10,15,.48);color:#9eb0bf;padding:0 10px;font-size:11px;cursor:pointer}
 .project-rename-form button:first-of-type{border-color:rgba(56,217,255,.38);color:var(--cyan)}
 .project-rename-form button:disabled,.project-rename-form input:disabled{opacity:.55;cursor:wait}
+/* 品牌标识从拉丁字母改为两字中文，收紧字距以免在 42px / 34px 方框里拥挤 */
+.brand-mark.cn{font-size:14px;letter-spacing:-.5px}
+.brand.compact .brand-mark.cn{font-size:11px;letter-spacing:-.5px}

@@ -535,13 +535,13 @@ const nextAutomaticProjectName = async (): Promise<string> => {
     if (!entry.isDirectory()) continue;
     try {
       const project = await readProject(entry.name);
-      const match = project.name.match(/^A9[|｜]项目(\d+)$/);
+      const match = project.name.match(/^(?:A9|影猫)[|｜]项目(\d+)$/);
       if (match?.[1]) highest = Math.max(highest, Number.parseInt(match[1], 10));
     } catch {
       // Invalid project folders do not affect the public project counter.
     }
   }
-  return `A9|项目${highest + 1}`;
+  return `影猫|项目${highest + 1}`;
 };
 
 export const createProjectFromMedia = async (files: Express.Multer.File[], requestedName?: string): Promise<ProjectDocument> => {

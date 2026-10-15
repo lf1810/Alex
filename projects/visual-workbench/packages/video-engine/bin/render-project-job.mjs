@@ -91,7 +91,11 @@ const serveUrl = await bundle({
   symlinkPublicDir: true,
   webpackOverride: (config) => config
 });
-const composition = await selectComposition({serveUrl, id: "EditorComposition", inputProps});
+// Optional override: reuse an already installed Chromium build instead of making
+// Remotion download Chrome Headless Shell (slow or blocked on some networks).
+// Unset keeps the stock Remotion behaviour.
+const browserExecutable = process.env.VISUAL_WORKBENCH_BROWSER?.trim() || undefined;
+const composition = await selectComposition({serveUrl, id: "EditorComposition", inputProps, ...(browserExecutable ? {browserExecutable} : {})});
 if (hasFrameRange && endFrame >= composition.durationInFrames) {
   throw new Error(`frame range ${startFrame}-${endFrame} exceeds composition duration ${composition.durationInFrames}`);
 }
@@ -106,5 +110,6 @@ await renderMedia({
   pixelFormat: "yuv420p",
   audioBitrate: "320k",
   ...(hasFrameRange ? {frameRange: [startFrame, endFrame]} : {}),
+  ...(browserExecutable ? {browserExecutable} : {}),
 });
 console.log(output);

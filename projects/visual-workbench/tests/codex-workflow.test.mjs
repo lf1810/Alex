@@ -24,11 +24,11 @@ test("首页只提供一段或多段视频导入，不暴露项目 JSON 导入",
   assert.doesNotMatch(source, /importProject/);
 });
 
-test("项目中心提供 A9 自动命名、重命名和删除", async () => {
+test("项目中心提供影猫自动命名、重命名和删除", async () => {
   const app = await readFile(new URL("../app/src/App.tsx", import.meta.url), "utf8");
   const store = await readFile(new URL("../local-service/src/project-store.ts", import.meta.url), "utf8");
   const server = await readFile(new URL("../local-service/src/server.ts", import.meta.url), "utf8");
-  assert.match(app, /brand-mark">A9/);
+  assert.match(app, /brand-mark[^>]*>影猫/);
   assert.match(app, /从镜头节点/);
   assert.match(app, /到剪辑动效/);
   assert.match(app, /在一张工作台推进/);
@@ -36,7 +36,7 @@ test("项目中心提供 A9 自动命名、重命名和删除", async () => {
   assert.match(app, /删除项目/);
   assert.match(app, /project-rename-form/);
   assert.doesNotMatch(app, /window\.prompt/);
-  assert.match(store, /A9\\|项目/);
+  assert.match(store, /影猫\\|项目/);
   assert.match(server, /deleteProject/);
   assert.match(server, /renameProject/);
 });

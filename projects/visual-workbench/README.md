@@ -1,4 +1,4 @@
-# CodeX可视化编导台
+# 影猫可视化编导台
 
 <img width="3020" height="1538" alt="e44059cd7c80c421cf44d6631713fd4f" src="https://github.com/user-attachments/assets/d56f49de-9d07-4d56-abe7-1141f430997c" />
 
@@ -141,7 +141,7 @@ pnpm desktop:package
 生成位置：
 
 ```text
-outputs/desktop/mac-arm64/CodeX可视化编导台.app
+outputs/desktop/mac-arm64/影猫可视化编导台.app
 ```
 
 本地开发和自己使用不需要服务器，也不需要注册 Apple 开发者账号。向其他用户公开分发 `.app` 时，建议使用 Apple Developer ID 完成签名和公证；未经签名的本地开发包可能需要通过 macOS 的“隐私与安全性”手动允许打开。

@@ -8,4 +8,4 @@ On the round tables
 ## Projects
 
 - [gesture-lab](projects/gesture-lab/README.md) — 浏览器手势交互视觉实验室：MediaPipe 双手追踪驱动矢量折叠与 3D 粒子场（Next.js + Three.js）
-- [visual-workbench](projects/visual-workbench/README.md) — CodeX可视化编导台：基于 Remotion 的本地多轨口播视频编导台
+- [visual-workbench](projects/visual-workbench/README.md) — 影猫可视化编导台：基于 Remotion 的本地多轨口播视频编导台
