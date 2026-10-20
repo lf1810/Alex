@@ -1,0 +1,24 @@
+{
+  "name": "@ajiunotes/director-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "ajiunotes-adapt-director-plan": "./bin/adapt.mjs"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@ajiunotes/contracts": "workspace:*",
+    "@ajiunotes/template-registry": "workspace:*"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@ajiunotes/video-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./remotion-root": "./dist/remotion-root.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@ajiunotes/contracts": "workspace:*",
+    "@ajiunotes/style-library": "workspace:*",
+    "@ajiunotes/template-registry": "workspace:*",
+    "@remotion/bundler": "4.0.490",
+    "@remotion/renderer": "4.0.490",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.490"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3"
+  }
+}

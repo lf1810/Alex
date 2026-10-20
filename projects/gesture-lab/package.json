@@ -1,0 +1,47 @@
+{
+  "name": "gesture-lab",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "Alex (lf1810)",
+  "description": "Browser-based hand gesture playground for interactive vector graphics and 3D particles.",
+  "homepage": "https://github.com/lf1810/Alex/tree/main/projects/gesture-lab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lf1810/Alex.git",
+    "directory": "projects/gesture-lab"
+  },
+  "bugs": {
+    "url": "https://github.com/lf1810/Alex/issues"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.35",
+    "next": "^16.2.12",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "^0.182.0",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "postcss": "8.5.24",
+    "sharp": "0.35.3"
+  },
+  "type": "module"
+}

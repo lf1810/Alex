@@ -1,0 +1,9 @@
+packages:
+  - "packages/*"
+  - "app"
+  - "local-service"
+  - "desktop"
+
+allowBuilds:
+  electron: true
+  esbuild: true

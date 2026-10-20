@@ -1,0 +1,38 @@
+{
+  "name": "@ajiunotes/visual-workbench",
+  "version": "0.1.0",
+  "author": "Alex (lf1810)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lf1810/Alex.git",
+    "directory": "projects/visual-workbench"
+  },
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=20 <25"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "node --test tests/*.test.mjs",
+    "check": "pnpm run build && pnpm run test",
+    "adapt:fixture": "node packages/director-adapter/bin/adapt.mjs tests/fixtures/director-plan-v2.json reports/project-document-example.json",
+    "dev": "concurrently -k -n service,app -c cyan,blue \"pnpm dev:service\" \"pnpm dev:app\"",
+    "dev:app": "pnpm --filter @ajiunotes/workbench-app dev",
+    "dev:service": "pnpm --filter @ajiunotes/local-service dev",
+    "desktop:prepare": "pnpm --filter @ajiunotes/contracts build && pnpm --filter @ajiunotes/style-library build && pnpm --filter @ajiunotes/template-registry build && pnpm --filter @ajiunotes/editor-core build && pnpm --filter @ajiunotes/video-engine build && pnpm --filter @ajiunotes/local-service build && pnpm --filter @ajiunotes/workbench-app build:desktop",
+    "desktop:dev": "pnpm desktop:prepare && pnpm --filter @ajiunotes/desktop start",
+    "desktop:package": "pnpm desktop:prepare && pnpm --filter @ajiunotes/desktop package:mac",
+    "desktop:package:win": "pnpm desktop:prepare && pnpm --filter @ajiunotes/desktop package:win",
+    "proxy:edit": "node scripts/build-edit-proxies.mjs",
+    "media:inspect": "node .codex/skills/visual-workbench-video/scripts/inspect-media.mjs",
+    "plan:apply": "node .codex/skills/visual-workbench-video/scripts/apply-rough-cut-plan.mjs",
+    "render:project": "pnpm desktop:prepare && node scripts/render-project.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "9.2.1",
+    "esbuild": "0.27.7",
+    "typescript": "5.9.3"
+  }
+}
